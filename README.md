@@ -44,7 +44,7 @@ CREATE TABLE product (
     created datetime NOT NULL,
     updated datetime,
     price varchar(255) NOT NULL,
-    admin int NOT NULL,
+    adminId int NOT NULL,
     PRIMARY KEY (id)
 );
 ```

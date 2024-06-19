@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Param, UseInterceptors, UploadedFile, UseGuards, Req } from '@nestjs/common';
-import { ApiBody, ApiConsumes, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, UseGuards, Post, Body, Get, Param, UseInterceptors, UploadedFile, Req } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiConsumes, ApiBearerAuth } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -23,6 +23,7 @@ export class ProductsController {
       }
     })
   }))
+  @ApiOperation({ summary: 'Create new Product' })
   @ApiConsumes('multipart/form-data')
   @ApiBody({ type: CreateProductDto })
   create(@Body() createProductDto: CreateProductDto, @UploadedFile() file, @Req() req: any) {

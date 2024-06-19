@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, UseGuards, Post, Body, Get, Param } from '@nestjs/common';
+import { ApiBearerAuth, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AuthGuard } from '../auth/auth.guard';
@@ -11,6 +11,8 @@ export class UsersController {
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
   @Post()
+  @ApiOperation({ summary: 'Create new User' })
+  @ApiBody({ type: CreateUserDto })
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
